@@ -12,7 +12,7 @@ Following are the functionalities
 
 **Steps for installing and running the server**
 
-- Step 1 : Clone the repository by running the command ``
+- Step 1 : Clone the repository by running the command `https://github.com/kushhingol/user-management.git`
 - Step 2 : In the root folder run the following command in the terminal `npm install`
 - Step 3 : Create a .env file to add all the required environment variables (Here is the list of environment variables to be maintained
             1. MONGODB_URI, 2. SECRET_KEY, 3. TOKEN_EXPIRATION_TIME)
