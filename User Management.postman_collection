@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "7d64bd56-5c53-4793-ac37-f6ff207ad34d",
+		"name": "User Management",
+		"description": "The collection User Management is capable for performing following services\n\n1. Create/Register a new user\n2. User Login\n3. Fetch All users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "USERNAME",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "PASSWORD",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				},
+				"description": "**Register User**\n\n* Registers a user in the database\n* Checks for the duplicate username\n* Expects username and password in the request body\n* The basic Auth is not used for passing the username and password for now as it can be utilize to authenticate clientId or client_secret if any"
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							" let jsonData = pm.response.json();\r",
+							"pm.test(\"Access token exists\", function () {\r",
+							"    pm.expect(jsonData.body).to.have.property('token');\r",
+							"});\r",
+							"pm.collectionVariables.set(\"token\", jsonData.body.token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "USERNAME",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "PASSWORD",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				},
+				"description": "**Login User**\n\n* User Login endpoint\n* Checks for user in the database and returns token and its expiry time\n* Expects username and password in the request body\n* The basic Auth is not used for passing the username and password for now as it can be utilize to authenticate clientId or client_secret if any"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDQzOTg3NzVjNWE0YjFkYzY1YjQ0ZDQiLCJpYXQiOjE2MTUwNDM0NTksImV4cCI6MTYxNTA0NDM1OX0.l-Jn1SwbiMcHN6uGw8ALy6oI3rZw2nl2HMVzrrPEy3p",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "**Fetch All Users**\n\n* fetch all users from teh database.\n* The Token is added in bearer token for authorization\n* The basic Auth is not used for passing the username and password for now as it can be utilize to authenticate clientId or client_secret if any"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDQzOTg3NzVjNWE0YjFkYzY1YjQ0ZDQiLCJpYXQiOjE2MTUwNDQxNjIsImV4cCI6MTYxNTA0NTA2Mn0.IAS3_2BBd8VzZW0pev_C_SyXSL9bSmcXPhk6Di14Bb0"
+		}
+	]
+}
