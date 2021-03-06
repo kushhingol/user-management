@@ -18,7 +18,7 @@ Following are the functionalities
             1. MONGODB_URI, 2. SECRET_KEY, 3. TOKEN_EXPIRATION_TIME)
 
 - Step 4: Run the following command to start the server `npm start`
-- Step 5: Use the collection named **User Management.postman_collection** for postman testing
+- Step 5: Use the collection named **User Management.postman_collection.json** for postman testing
 
 **Note**: In the postman testing the tokens will be automatically set in the Authorization by a script so no need to add the token manually for /api/users route
 
