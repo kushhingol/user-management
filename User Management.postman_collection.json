@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7d64bd56-5c53-4793-ac37-f6ff207ad34d",
+		"_postman_id": "f8882f3c-cc9c-4530-ad71-cec89aa4bda4",
 		"name": "User Management",
 		"description": "The collection User Management is capable for performing following services\n\n1. Create/Register a new user\n2. User Login\n3. Fetch All users",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -58,14 +58,14 @@
 				{
 					"listen": "test",
 					"script": {
-						"type": "text/javascript",
 						"exec": [
 							" let jsonData = pm.response.json();\r",
 							"pm.test(\"Access token exists\", function () {\r",
 							"    pm.expect(jsonData.body).to.have.property('token');\r",
 							"});\r",
-							"pm.collectionVariables.set(\"token\", jsonData.body.token);"
-						]
+							"pm.collectionVariables.set(\"token\", jsonData.body && jsonData.body.token ?  jsonData.body.token : null);"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -162,7 +162,7 @@
 	"variable": [
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDQzOTg3NzVjNWE0YjFkYzY1YjQ0ZDQiLCJpYXQiOjE2MTUwNDQxNjIsImV4cCI6MTYxNTA0NTA2Mn0.IAS3_2BBd8VzZW0pev_C_SyXSL9bSmcXPhk6Di14Bb0"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDQzYTU1ZTU2ZTFkNzM4N2U1NGE3M2EiLCJpYXQiOjE2MTUwNDYwMDEsImV4cCI6MTYxNTA0NjkwMX0.qZdQztJ0iQyyG-s49jM1QPf3aiUwtJLZWeokvSWtCu0"
 		}
 	]
 }
